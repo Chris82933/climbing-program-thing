@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ClimbSmart — Custom Training Programs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>ClimbSmart</h1>
+    <p>Answer a few questions and get a personalized training program built around your goals.</p>
+  </header>
+
+  <!-- ── Survey ── -->
+  <div id="survey">
+    <div id="progress-wrap">
+      <div id="progress-label">
+        <span id="step-label">Step 1 of 5</span>
+        <span id="step-name">Climbing Background</span>
+      </div>
+      <div id="progress-bar-track">
+        <div id="progress-bar-fill" style="width:20%"></div>
+      </div>
+    </div>
+
+    <!-- Step 1: Background -->
+    <div class="step active" data-step="1">
+      <div class="card">
+        <div class="section-heading">Climbing Background</div>
+
+        <div class="field-row">
+          <label class="field-label">What is your highest <span>redpoint grade</span> in the past 6 months?</label>
+          <select id="redpoint-grade">
+            <option value="">Select grade…</option>
+            <optgroup label="Beginner">
+              <option value="5.7">5.7  ·  V0−</option>
+              <option value="5.8">5.8  ·  V0</option>
+              <option value="5.9">5.9  ·  V0+</option>
+            </optgroup>
+            <optgroup label="Intermediate">
+              <option value="5.10a">5.10a  ·  V1</option>
+              <option value="5.10b">5.10b  ·  V1</option>
+              <option value="5.10c">5.10c  ·  V2</option>
+              <option value="5.10d">5.10d  ·  V2</option>
+              <option value="5.11a">5.11a  ·  V3</option>
+              <option value="5.11b">5.11b  ·  V3</option>
+              <option value="5.11c">5.11c  ·  V4</option>
+              <option value="5.11d">5.11d  ·  V4</option>
+            </optgroup>
+            <optgroup label="Advanced">
+              <option value="5.12a">5.12a  ·  V5</option>
+              <option value="5.12b">5.12b  ·  V5−6</option>
+              <option value="5.12c">5.12c  ·  V6</option>
+              <option value="5.12d">5.12d  ·  V7</option>
+              <option value="5.13a">5.13a  ·  V7−8</option>
+              <option value="5.13b">5.13b  ·  V8</option>
+              <option value="5.13c">5.13c  ·  V9</option>
+              <option value="5.13d">5.13d  ·  V10</option>
+            </optgroup>
+            <optgroup label="Elite">
+              <option value="5.14a">5.14a  ·  V11</option>
+              <option value="5.14b">5.14b  ·  V12</option>
+              <option value="5.14c">5.14c+  ·  V13+</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">How many <span>years</span> have you been climbing?</label>
+          <select id="years-climbing">
+            <option value="">Select…</option>
+            <option value="0.5">Less than 1 year</option>
+            <option value="1.5">1–2 years</option>
+            <option value="3">3–4 years</option>
+            <option value="5">5–6 years</option>
+            <option value="8">7–10 years</option>
+            <option value="12">10+ years</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">What is your <span>primary climbing discipline</span>?</label>
+          <div class="chip-grid" id="discipline-chips">
+            <div class="chip" data-val="sport">Sport</div>
+            <div class="chip" data-val="trad">Trad</div>
+            <div class="chip" data-val="bouldering">Bouldering</div>
+            <div class="chip" data-val="multipitch">Multi-pitch</div>
+            <div class="chip" data-val="gym">Gym / Indoor</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">What is your <span>goal grade</span> for this training cycle?</label>
+          <select id="goal-grade">
+            <option value="">Select grade…</option>
+            <optgroup label="Beginner">
+              <option value="5.7">5.7  ·  V0−</option>
+              <option value="5.8">5.8  ·  V0</option>
+              <option value="5.9">5.9  ·  V0+</option>
+            </optgroup>
+            <optgroup label="Intermediate">
+              <option value="5.10a">5.10a  ·  V1</option>
+              <option value="5.10b">5.10b  ·  V1</option>
+              <option value="5.10c">5.10c  ·  V2</option>
+              <option value="5.10d">5.10d  ·  V2</option>
+              <option value="5.11a">5.11a  ·  V3</option>
+              <option value="5.11b">5.11b  ·  V3</option>
+              <option value="5.11c">5.11c  ·  V4</option>
+              <option value="5.11d">5.11d  ·  V4</option>
+            </optgroup>
+            <optgroup label="Advanced">
+              <option value="5.12a">5.12a  ·  V5</option>
+              <option value="5.12b">5.12b  ·  V5−6</option>
+              <option value="5.12c">5.12c  ·  V6</option>
+              <option value="5.12d">5.12d  ·  V7</option>
+              <option value="5.13a">5.13a  ·  V7−8</option>
+              <option value="5.13b">5.13b  ·  V8</option>
+              <option value="5.13c">5.13c  ·  V9</option>
+              <option value="5.13d">5.13d  ·  V10</option>
+            </optgroup>
+            <optgroup label="Elite">
+              <option value="5.14a">5.14a  ·  V11</option>
+              <option value="5.14b">5.14b  ·  V12</option>
+              <option value="5.14c">5.14c+  ·  V13+</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <span></span>
+          <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Schedule -->
+    <div class="step" data-step="2">
+      <div class="card">
+        <div class="section-heading">Training Schedule</div>
+
+        <div class="field-row">
+          <label class="field-label">How many <span>days per week</span> can you climb or train?</label>
+          <div class="metric-header mt8">
+            <span class="metric-name">Training days</span>
+            <span class="metric-value" id="days-val">3</span>
+          </div>
+          <input type="range" id="days-per-week" min="1" max="6" value="3" step="1"
+            oninput="document.getElementById('days-val').textContent=this.value" />
+          <div class="text-muted mt8">1 = one day/week &nbsp;|&nbsp; 6 = six days/week</div>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">How long is each <span>training session</span>?</label>
+          <select id="session-duration">
+            <option value="45">45 minutes</option>
+            <option value="60">1 hour</option>
+            <option value="90" selected>1.5 hours</option>
+            <option value="120">2 hours</option>
+            <option value="150">2.5 hours</option>
+            <option value="180">3+ hours</option>
+          </select>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">What <span>equipment</span> do you have access to?</label>
+          <div class="chip-grid" id="equipment-chips">
+            <div class="chip" data-val="gym">Climbing gym</div>
+            <div class="chip" data-val="board">Hangboard</div>
+            <div class="chip" data-val="moonboard">Spray / Moon board</div>
+            <div class="chip" data-val="weights">Weights / gym</div>
+            <div class="chip" data-val="outdoor">Outdoor crag</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">How many <span>weeks</span> do you want this program to last?</label>
+          <select id="program-length">
+            <option value="4">4 weeks</option>
+            <option value="6" selected>6 weeks</option>
+            <option value="8">8 weeks</option>
+            <option value="12">12 weeks</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevStep()">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Strengths & Weaknesses -->
+    <div class="step" data-step="3">
+      <div class="card">
+        <div class="section-heading">Strengths & Weaknesses</div>
+        <p class="text-muted mb4" style="margin-bottom:20px">Select all that apply. Be honest — this shapes your entire program. Unselected attributes are treated as average.</p>
+
+        <label class="field-label mb4"><span>✅ What are your STRENGTHS?</span></label>
+        <div class="chip-grid" id="strength-chips" style="margin-bottom:24px">
+          <div class="chip" data-val="finger_strength">Finger strength</div>
+          <div class="chip" data-val="endurance">Endurance</div>
+          <div class="chip" data-val="power">Power / explosive moves</div>
+          <div class="chip" data-val="footwork">Footwork</div>
+          <div class="chip" data-val="body_position">Body positioning</div>
+          <div class="chip" data-val="route_reading">Route reading</div>
+          <div class="chip" data-val="mental">Mental game / confidence</div>
+          <div class="chip" data-val="flexibility">Flexibility / hip mobility</div>
+          <div class="chip" data-val="slopers">Slopers</div>
+          <div class="chip" data-val="crimps">Crimps</div>
+          <div class="chip" data-val="overhangs">Overhangs</div>
+          <div class="chip" data-val="slabs">Slabs</div>
+        </div>
+
+        <label class="field-label mb4"><span>⚠️ What are your WEAKNESSES?</span></label>
+        <div class="chip-grid" id="weakness-chips">
+          <div class="chip" data-val="finger_strength">Finger strength</div>
+          <div class="chip" data-val="endurance">Endurance</div>
+          <div class="chip" data-val="power">Power / explosive moves</div>
+          <div class="chip" data-val="footwork">Footwork</div>
+          <div class="chip" data-val="body_position">Body positioning</div>
+          <div class="chip" data-val="route_reading">Route reading</div>
+          <div class="chip" data-val="mental">Mental game / confidence</div>
+          <div class="chip" data-val="flexibility">Flexibility / hip mobility</div>
+          <div class="chip" data-val="slopers">Slopers</div>
+          <div class="chip" data-val="crimps">Crimps</div>
+          <div class="chip" data-val="overhangs">Overhangs</div>
+          <div class="chip" data-val="slabs">Slabs</div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevStep()">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Lattice-style Metrics -->
+    <div class="step" data-step="4">
+      <div class="card">
+        <div class="section-heading">Self-Assessment Metrics</div>
+        <p class="text-muted" style="margin-bottom:20px">Rate yourself 1–10 on each metric. 5 = average for your grade, 10 = excellent.</p>
+
+        <div class="metric-grid">
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Max Finger Strength</span>
+              <span class="metric-value" id="v-finger">5</span>
+            </div>
+            <div class="metric-desc">How hard can you pull on a small edge? (20mm / BM2K style)</div>
+            <input type="range" id="m-finger" min="1" max="10" value="5"
+              oninput="document.getElementById('v-finger').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Power Endurance</span>
+              <span class="metric-value" id="v-power-end">5</span>
+            </div>
+            <div class="metric-desc">Can you sustain hard moves on a long boulder or pump route?</div>
+            <input type="range" id="m-power-end" min="1" max="10" value="5"
+              oninput="document.getElementById('v-power-end').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Aerobic Base / ARC</span>
+              <span class="metric-value" id="v-aerobic">5</span>
+            </div>
+            <div class="metric-desc">How quickly do you recover between hard efforts?</div>
+            <input type="range" id="m-aerobic" min="1" max="10" value="5"
+              oninput="document.getElementById('v-aerobic').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Contact Strength</span>
+              <span class="metric-value" id="v-contact">5</span>
+            </div>
+            <div class="metric-desc">How fast do your fingers recruit when you hit a hold dynamically?</div>
+            <input type="range" id="m-contact" min="1" max="10" value="5"
+              oninput="document.getElementById('v-contact').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Upper Body Strength</span>
+              <span class="metric-value" id="v-upper">5</span>
+            </div>
+            <div class="metric-desc">Lock-off ability, lat pull, shoulder stability.</div>
+            <input type="range" id="m-upper" min="1" max="10" value="5"
+              oninput="document.getElementById('v-upper').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Technique / Movement</span>
+              <span class="metric-value" id="v-technique">5</span>
+            </div>
+            <div class="metric-desc">Footwork, hip position, body tension, route reading.</div>
+            <input type="range" id="m-technique" min="1" max="10" value="5"
+              oninput="document.getElementById('v-technique').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Mental / Composure</span>
+              <span class="metric-value" id="v-mental">5</span>
+            </div>
+            <div class="metric-desc">Staying calm on the sharp end, projecting hard routes.</div>
+            <input type="range" id="m-mental" min="1" max="10" value="5"
+              oninput="document.getElementById('v-mental').textContent=this.value" />
+          </div>
+
+          <div class="metric-item">
+            <div class="metric-header">
+              <span class="metric-name">Flexibility / Mobility</span>
+              <span class="metric-value" id="v-flex">5</span>
+            </div>
+            <div class="metric-desc">Hip mobility, high steps, drop-knees, heel hooks.</div>
+            <input type="range" id="m-flex" min="1" max="10" value="5"
+              oninput="document.getElementById('v-flex').textContent=this.value" />
+          </div>
+
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevStep()">← Back</button>
+          <button class="btn btn-primary" onclick="nextStep()">Next →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Goals & Injuries -->
+    <div class="step" data-step="5">
+      <div class="card">
+        <div class="section-heading">Goals & Physical State</div>
+
+        <div class="field-row">
+          <label class="field-label">What is your <span>primary training goal</span>?</label>
+          <div class="chip-grid" id="goal-chips">
+            <div class="chip" data-val="grade">Send a specific grade</div>
+            <div class="chip" data-val="fitness">General fitness & base</div>
+            <div class="chip" data-val="boulder">Improve bouldering</div>
+            <div class="chip" data-val="endurance_goal">Build endurance</div>
+            <div class="chip" data-val="project">Send a specific project</div>
+            <div class="chip" data-val="competition">Competition prep</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">Do you have any <span>current injuries or limitations</span>?</label>
+          <div class="chip-grid" id="injury-chips">
+            <div class="chip" data-val="none">None</div>
+            <div class="chip" data-val="finger_pulley">Finger / pulley</div>
+            <div class="chip" data-val="elbow">Elbow / golfer's elbow</div>
+            <div class="chip" data-val="shoulder">Shoulder</div>
+            <div class="chip" data-val="wrist">Wrist</div>
+            <div class="chip" data-val="back">Back</div>
+            <div class="chip" data-val="knee">Knee</div>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="field-label">How would you rate your <span>current fitness level</span>?</label>
+          <select id="fitness-level">
+            <option value="low">Low — coming back from injury / long break</option>
+            <option value="medium" selected>Medium — training consistently but not peaking</option>
+            <option value="high">High — in good shape, ready to push hard</option>
+          </select>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-secondary" onclick="prevStep()">← Back</button>
+          <button class="btn btn-primary" onclick="generateProgram()">Generate My Program →</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- /#survey -->
+
+  <!-- ── Results ── -->
+  <div id="results">
+    <div class="result-header">
+      <h2 id="program-title">Your Training Program</h2>
+      <p id="program-subtitle"></p>
+      <div class="profile-chips" id="profile-chips"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-heading">Weekly Schedule Overview</div>
+      <div class="week-grid" id="week-grid"></div>
+      <div class="phase-box" id="phase-box"></div>
+    </div>
+
+    <div id="sessions-container"></div>
+
+    <div class="card">
+      <div class="section-heading">Key Training Tips</div>
+      <ul class="tip-list" id="tips-list"></ul>
+    </div>
+
+
+    <!-- Journal notice — screen only -->
+    <div class="card screen-only" style="border-style:dashed; text-align:center; padding:18px 24px;">
+      <div style="font-size:1.4rem; margin-bottom:6px;">📋</div>
+      <div style="font-weight:700; margin-bottom:4px;">Session Journal Included</div>
+      <p class="text-muted">A fillable workout log for every session type prints automatically with your program.</p>
+    </div>
+
+    <!-- Journal pages — print only -->
+    <div id="journal-section"></div>
+
+    <div class="btn-row screen-only" style="justify-content:center; margin-top:32px">
+      <button class="btn btn-secondary" onclick="resetSurvey()">← Start Over</button>
+      <button class="btn btn-primary" onclick="window.print()">🖨 Print Program</button>
+    </div>
+  </div><!-- /#results -->
+</div><!-- /#app -->
+
+<script src="app.js"></script>
+</body>
+</html>
